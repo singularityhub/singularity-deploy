@@ -1,0 +1,63 @@
+name: singularity-deploy
+
+on:
+  push:
+    branches:
+      - "main"
+
+jobs:
+  release:
+    name: Create Release
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Define Repository Name and Release Version
+        run: |
+            repo=$(echo "${GITHUB_REPOSITORY/\//-}")
+            release=$(cat VERSION)
+            echo "reponame=$repo" >> $GITHUB_ENV
+            echo "release_tag=$release" >> $GITHUB_ENV
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ env.release_tag }}
+          release_name: Release ${{ env.release_tag }}
+          draft: false
+          prerelease: false
+      - uses: eWaterCycle/setup-singularity@v6
+        with:
+          singularity-version: 3.6.4
+      - name: Build the singularity container
+        run: |
+            repo=$(echo "${GITHUB_REPOSITORY/\//-}")
+
+            # For each Singularity* container, build based on the prefix (tag) 
+            for recipe in $(ls Singularity*); do
+                echo "Building $recipe"
+                tag=$(echo "${recipe/Singularity\./}")
+                # If we find empty, use latest
+                if [ "$tag" == "Singularity" ]; then
+                    tag=latest
+                fi
+                # Build the container and name by tag
+                echo "Tag is $tag."
+                container="$repo:$tag.sif"
+                singularity build --fakeroot container.sif Singularity
+                if [ "$?" == "0" ]; then
+                    echo "Successfully built container $container."                
+                    mv container.sif "$container"
+                else
+                    echo "There was an issue building $container."          
+                fi
+            done
+      - name: Upload Release Assets
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          upload_url: ${{ steps.create_release.outputs.upload_url }} 
+          tag_name: ${{ env.release_tag }}
+        run: |
+          hub release edit $(find . -type f -name "*.sif" -printf "-a %p ") -m "" "$tag_name" 
