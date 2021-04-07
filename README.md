@@ -1,7 +1,6 @@
 # Singularity Deploy
 
-[![GitHub actions status](https://github.com/singularityhub/singularity-deploy/workflows/singularity-deploy/badge.svg?branch=main)](https://github.com/singularityhub/singularity-deploy/actions?query=branch%3Amain+workflow%3Asingularity-deploy)
-[![GitHub actions status](https://github.com/singularityhub/singularity-deploy/workflows/singularity-deploy-test/badge.svg?branch=main)](https://github.com/singularityhub/singularity-deploy/actions?query=branch%3Amain+workflow%3Asingularity-deploy-test)
+![img/shpc.png](img/shpc.png)
 
 Wouldn't it be nice to build Singularity images without a registry proper,
 and just keep them alongside the GitHub codebase? This is now possible!
