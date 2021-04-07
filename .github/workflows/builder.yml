@@ -12,6 +12,13 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
+      - name: Get Latest Tag
+        run: |
+            # Get the latest tag, we won't build if it's the current
+            git fetch --tags
+            latest_tag=$(git tag | tail -1)
+            echo "latest_tag=$latest_tag" >> $GITHUB_ENV
+
       - name: Define Repository Name and Release Version
         run: |
             repo=$(echo "${GITHUB_REPOSITORY/\//-}")
@@ -21,6 +28,7 @@ jobs:
       - name: Create Release
         id: create_release
         uses: actions/create-release@v1
+        if: ${{ env.release_tag != env.latest_tag }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
@@ -29,9 +37,11 @@ jobs:
           draft: false
           prerelease: false
       - uses: eWaterCycle/setup-singularity@v6
+        if: ${{ env.release_tag != env.latest_tag }}
         with:
           singularity-version: 3.6.4
       - name: Build the singularity container
+        if: ${{ env.release_tag != env.latest_tag }}
         run: |
             repo=$(echo "${GITHUB_REPOSITORY/\//-}")
 
@@ -55,6 +65,7 @@ jobs:
                 fi
             done
       - name: Upload Release Assets
+        if: ${{ env.release_tag != env.latest_tag }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           upload_url: ${{ steps.create_release.outputs.upload_url }} 
