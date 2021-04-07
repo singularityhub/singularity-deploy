@@ -7,8 +7,13 @@ and just keep them alongside the GitHub codebase? This is now possible!
 This small repository provides an example to get you started. It will
 build one or more images (whatever Singularity.* files that are present at
 the root) and then release them as assets to your GitHub repository so
-that they can be programatically obtained. Note that assets are limited to
-2 GB in size, which is still fairly good. You can use
+that they can be programatically obtained. It is associated with 
+[singularity-hpc](https://github.com/singularityhub/singularity-hpc) to allow
+you to then define LMOD modules for these same containers. 
+
+> Can I upload the largest of chonkers?
+
+Yes and no. Note that assets are limited to 2 GB in size, which is still fairly good. You can use
 it as a template for your own recipes as is, or modify it for your custom
 use case. Instructions are below!
 
