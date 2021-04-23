@@ -13,7 +13,7 @@ jobs:
         uses: actions/checkout@v2
       - uses: eWaterCycle/setup-singularity@v6
         with:
-          singularity-version: 3.6.4
+          singularity-version: 3.7.1
       - name: Build the singularity containers
         run: |
             repo=$(echo "${GITHUB_REPOSITORY/\//-}")
@@ -29,7 +29,7 @@ jobs:
                 # Build the container and name by tag
                 echo "Tag is $tag."
                 container="$repo:$tag.sif"
-                singularity build --fakeroot container.sif Singularity
+                singularity build --fakeroot container.sif "$recipe"
                 if [ "$?" == "0" ]; then
                     echo "Successfully built container $container."                
                     mv container.sif "$container"
