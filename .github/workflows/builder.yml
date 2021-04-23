@@ -39,7 +39,7 @@ jobs:
       - uses: eWaterCycle/setup-singularity@v6
         if: ${{ env.release_tag != env.latest_tag }}
         with:
-          singularity-version: 3.6.4
+          singularity-version: 3.7.1
       - name: Build the singularity container
         if: ${{ env.release_tag != env.latest_tag }}
         run: |
@@ -56,7 +56,7 @@ jobs:
                 # Build the container and name by tag
                 echo "Tag is $tag."
                 container="$repo:$tag.sif"
-                singularity build --fakeroot container.sif Singularity
+                singularity build --fakeroot container.sif "$recipe"
                 if [ "$?" == "0" ]; then
                     echo "Successfully built container $container."                
                     mv container.sif "$container"
