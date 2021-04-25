@@ -2,8 +2,11 @@ name: singularity-deploy
 
 on:
   push:
+    # This branch does not exist! You should update this to be your "production" branch
+    # and ensure that when you work on recipes you only merge to this branch when it's time to release
+    # You can also use another GitHub trigger entirely
     branches:
-      - "main"
+      - "main-branch"
 
 jobs:
   release:
