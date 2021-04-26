@@ -70,7 +70,7 @@ names, so you should not repeat the same tag. Do not use `:` in your tag names.
 If you do need to re-release a tag (not recommended if a user might be using it and then it's changed) you can manually delete
 the release and the tag in the GitHub interface. This is a nice structure because it
 means you can have containers with different names under the same tag. In the example
-above, we have each of "deploy," "latest," and "salad" released under tag 0.0.1.
+above, we have each of "pokemon," "latest," and "salad" released under tag 0.0.1.
 This is how it looks on GitHub:
 
 ![img/releases.png](img/releases.png)
