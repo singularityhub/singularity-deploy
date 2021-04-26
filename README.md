@@ -17,6 +17,10 @@ Yes and no. Note that assets are limited to 2 GB in size, which is still fairly 
 it as a template for your own recipes as is, or modify it for your custom
 use case. Instructions are below!
 
+**Note** Currently recipe extensions are associated with tags, and the GitHub release is
+associated with a digest. We likely will change this in the next few weeks so that GitHub
+releases are tags, and the "digests" are flie names. Stay tuned for updates!
+
 ## Getting Started
 
 ### 1. Template or Fork
@@ -38,7 +42,10 @@ or an organizational namespace.
 First, you should write your container recipe(s) in the present working directory.
 For good practice, when you are updating recipes you should checkout a new branch
 and open a pull request, as the repository comes with a workflow to trigger on a PR
-to [test your container build](.github/workflows/test.yml). You can add any additional
+to [test your container build](.github/workflows/test.yml). Note that in the main workflow
+that deploys the releases, the current branch is set to be `main-branch`. You should
+update this to be your main "production" branch that you want to deploy releases on merge.
+You are also free to choose a different trigger and release strategy. You can add any additional
 tests that that you might need. By default, any Singularity.* file will be automatically detected. 
 If there is no extension (the name Singularity), the name used will be "latest." 
 You can use these tags across multiple releases of your containers. For example,
