@@ -6,7 +6,7 @@ on:
     # and ensure that when you work on recipes you only merge to this branch when it's time to release
     # You can also use another GitHub trigger entirely
     branches:
-      - "main-branch"
+      - "main"
 
 jobs:
   release:
@@ -42,7 +42,7 @@ jobs:
       - uses: eWaterCycle/setup-singularity@v6
         if: ${{ env.release_tag != env.latest_tag }}
         with:
-          singularity-version: 3.7.1
+          singularity-version: 3.6.4
       - name: Build the singularity container
         if: ${{ env.release_tag != env.latest_tag }}
         run: |
