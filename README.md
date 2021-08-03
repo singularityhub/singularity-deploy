@@ -53,7 +53,7 @@ these files would generate packages with sifs named as follows:
 
  - [Singularity](Singularity) maps to [https://github.com/singularityhub/singularity-deploy/releases/download/0.0.1/singularityhub-singularity-deploy.latest.sif](https://github.com/singularityhub/singularity-deploy/releases/download/0.0.1/singularityhub-singularity-deploy.latest.sif)
  - [Singularity.pokemon](Singularity.pokemon) maps to [https://github.com/singularityhub/singularity-deploy/releases/download/0.0.1/singularityhub-singularity-deploy.pokemon.sif](https://github.com/singularityhub/singularity-deploy/releases/download/0.0.1/singularityhub-singularity-deploy.pokemon.sif)
- - [Singularity.salad](Singularity.salad) maps to [https://github.com/singularityhub/singularity-deploy/releases/download/0.0.1/singularityhub-singularity-deploy.latest.sif](https://github.com/singularityhub/singularity-deploy/releases/download/0.0.1/singularityhub-singularity-deploy.salad.sif)
+ - [Singularity.salad](Singularity.salad) maps to [https://github.com/singularityhub/singularity-deploy/releases/download/0.0.1/singularityhub-singularity-deploy.salad.sif](https://github.com/singularityhub/singularity-deploy/releases/download/0.0.1/singularityhub-singularity-deploy.salad.sif)
 
 For each name, you can see the direct download URL contains the repository (singularityhub/singularity-deploy),
 You should not use any `:` characters in either your container tag (the GitHub extension) or
