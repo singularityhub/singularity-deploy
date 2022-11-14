@@ -1,6 +1,0 @@
-Bootstrap: docker
-From: vanessa/salad
-
-%post
-
-echo "hello salad, I am spoon."

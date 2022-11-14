@@ -1,6 +1,0 @@
-Bootstrap: docker
-From: vanessa/pokemon
-
-%post
-
-echo "hello this is pokemon build."

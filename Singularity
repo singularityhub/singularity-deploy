@@ -1,6 +1,6 @@
 Bootstrap: docker
-From: busybox
+From: raphsoft/reveal:1.0
 
 %post
 
-echo "this is a tiny example container."
+echo "Singularity from docker raphsoft/reveal:1.0"
